@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>Weather Application</h1>
+            <p>Get real-time weather information and forecasts</p>
+        </header>
+
+        <main class="app-main">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-card">
+                    <div class="search-step">
+                        <label for="countrySelect" class="form-label">Step 1: Select Country</label>
+                        <select id="countrySelect" class="form-control">
+                            <option value="">Choose your country...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-step">
+                        <label for="cityInput" class="form-label">Step 2: Enter City</label>
+                        <input 
+                            type="text" 
+                            id="cityInput" 
+                            class="form-control" 
+                            placeholder="Select a country first"
+                            disabled
+                        >
+                    </div>
+                    
+                    <button id="searchBtn" class="btn btn--primary btn--full-width" disabled>
+                        <span class="btn-text">Get Weather</span>
+                        <span class="btn-loader hidden">Searching...</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-section hidden">
+                <div class="loader"></div>
+                <p>Fetching weather data and generating charts...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-section hidden">
+                <div class="error-icon">⚠️</div>
+                <p id="errorMessage" class="error-text"></p>
+                <button id="retryBtn" class="btn btn--secondary">Try Again</button>
+            </div>
+
+            <!-- Weather Display -->
+            <div id="weatherDisplay" class="weather-section hidden">
+                <div class="weather-card">
+                    <div class="weather-header">
+                        <div class="location-info">
+                            <h2 id="locationName"></h2>
+                            <p id="countryName"></p>
+                        </div>
+                        <div class="weather-icon">
+                            <span id="weatherEmoji"></span>
+                        </div>
+                    </div>
+
+                    <div class="temperature-display">
+                        <div class="main-temperature">
+                            <span id="currentTemp"></span>
+                        </div>
+                        <p id="weatherDescription"></p>
+                    </div>
+
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🌡️</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Feels Like</span>
+                                <span id="feelsLike" class="detail-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">💧</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Humidity</span>
+                                <span id="humidity" class="detail-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Wind Speed</span>
+                                <span id="windSpeed" class="detail-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">📊</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Pressure</span>
+                                <span id="pressure" class="detail-value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div id="chartsSection" class="charts-section hidden">
+                <h3>24-Hour Weather Forecast</h3>
+                
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h4>Temperature</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="temperatureChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h4>Humidity</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="humidityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h4>Wind Speed</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="windChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h4>Precipitation</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="precipitationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
